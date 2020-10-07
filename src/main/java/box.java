@@ -1,7 +1,11 @@
+import com.lowagie.text.DocumentException;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.text.DateFormat;
 
 public class box extends JFrame implements ActionListener {
@@ -10,7 +14,7 @@ public class box extends JFrame implements ActionListener {
     //菜单栏
     private JMenu menu_File,menu_Search,menu_Edit,menu_Help;
     //菜单栏内的菜单
-    private JMenuItem item_new,item_open,item_save,item_exit,item_print, item_search;
+    private JMenuItem item_new,item_open,item_save,item_exit,item_print,item_export, item_search;
     //对于file菜单的子项
     private JMenuItem item_undo,item_cut,item_copy,item_stick;
     //对于edit菜单的子项
@@ -34,6 +38,7 @@ public class box extends JFrame implements ActionListener {
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
     }
 
     /**
@@ -50,10 +55,12 @@ public class box extends JFrame implements ActionListener {
         item_save = new JMenuItem("Save");
         item_exit = new JMenuItem("Exit");
         item_print = new JMenuItem("Print");
+        item_export = new JMenuItem("Export2PDF");
         menu_File.add(item_new);
         menu_File.add(item_open);
         menu_File.add(item_save);
         menu_File.add(item_print);
+        menu_File.add(item_export);
         menu_File.add(item_exit);
 
         //File 菜单
@@ -105,6 +112,7 @@ public class box extends JFrame implements ActionListener {
         item_open.addActionListener(this);
         item_save.addActionListener(this);
         item_exit.addActionListener(this);
+        item_export.addActionListener(this);
         item_print.addActionListener(this);
         item_undo.addActionListener(this);
         item_cut.addActionListener(this);
@@ -125,7 +133,13 @@ public class box extends JFrame implements ActionListener {
             fileFunction.save(edit_text_area, scroll_bar);
         }else if (e.getSource() == item_print) {
             fileFunction.print();
-        }else if (e.getSource() == item_search) {
+        }else if (e.getSource() == item_export) {
+            try {
+                fileFunction.export(edit_text_area, scroll_bar);
+            } catch (IOException | DocumentException ex) {
+                ex.printStackTrace();
+            }
+        } else if (e.getSource() == item_search) {
             search();
         }else if (e.getSource() == item_undo) {
             editFunction.undo(edit_text_area);

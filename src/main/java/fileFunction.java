@@ -4,8 +4,16 @@ import javax.print.attribute.HashDocAttributeSet;
 import javax.print.attribute.HashPrintRequestAttributeSet;
 import javax.swing.*;
 import java.io.*;
+import com.lowagie.text.Document;
+import com.lowagie.text.DocumentException;
+import com.lowagie.text.Font;
+import com.lowagie.text.Paragraph;
+import com.lowagie.text.pdf.BaseFont;
+import com.lowagie.text.pdf.PdfWriter;
 
 public class fileFunction {
+    private static final String FONT = "C:\\Windows\\Fonts\\simhei.ttf";
+    @edu.umd.cs.findbugs.annotations.SuppressFBWarnings("NP_NULL_ON_SOME_PATH")
     public static void open(JTextArea edit_text_area, JScrollPane scroll_bar) {
         File file = null;
         int result ;
@@ -76,7 +84,7 @@ public class fileFunction {
             PrintService defaultService = PrintServiceLookup
                     .lookupDefaultPrintService();
             // 显示打印对话框
-            PrintService service = ServiceUI.printDialog(null, 200, 200,
+            PrintService service = ServiceUI.printDialog(null, 300, 200,
                     printService, defaultService, flavor, pras);
             if (service != null) {
                 try {
@@ -92,4 +100,26 @@ public class fileFunction {
         }
     }
 
+    public static void export(JTextArea edit_text_area, JScrollPane scroll_bar) throws IOException, DocumentException {
+        File file = null;
+        int result ;
+        JFileChooser fileChooser = new JFileChooser("F:\\");
+        fileChooser.setApproveButtonToolTipText("保存"); // 设置确认按钮的现实文本
+        fileChooser.setDialogTitle("导出"); // 设置title
+        result = fileChooser.showOpenDialog(scroll_bar); // 设置Dialog的根View 根布局
+
+        //--------------------------------------------------------------------------
+        if(result == JFileChooser.APPROVE_OPTION) {
+            file = fileChooser.getSelectedFile(); // 若点击了确定按钮，给file填文件路径
+        }
+        Document document = new Document();
+        OutputStream os = new FileOutputStream(new File(file.getAbsolutePath()+".pdf"));
+        PdfWriter.getInstance(document, os);
+        document.open();
+        //方法一：使用Windows系统字体(TrueType)
+        BaseFont baseFont = BaseFont.createFont(FONT, BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
+        Font font = new Font(baseFont);
+        document.add(new Paragraph(edit_text_area.getText(), font));
+        document.close();
+    }
 }
