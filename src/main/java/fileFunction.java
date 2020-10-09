@@ -14,7 +14,7 @@ import com.lowagie.text.pdf.PdfWriter;
 public class fileFunction {
     private static final String FONT = "C:\\Windows\\Fonts\\simhei.ttf";
     @edu.umd.cs.findbugs.annotations.SuppressFBWarnings("NP_NULL_ON_SOME_PATH")
-    public static void open(JTextArea edit_text_area, JScrollPane scroll_bar) {
+    public static void open(JTextPane edit_text_pane, JScrollPane scroll_bar) {
         File file = null;
         int result ;
         JFileChooser fileChooser = new JFileChooser("F:\\");
@@ -35,7 +35,7 @@ public class fileFunction {
 
                 String readLine = "";
                 while ((readLine = reader.readLine()) != null) { // 对BufferedReader数据一行行读
-                    edit_text_area.append(readLine+'\n');  //对edit_text_area 一行行加
+                    edit_text_pane.setText(edit_text_pane.getText()+readLine+'\n');  //对edit_text_area 一行行加
                 }
 
                 reader.close(); // 关闭reader
@@ -45,11 +45,10 @@ public class fileFunction {
             }
         }
     }
-    public static void save(JTextArea edit_text_area, JScrollPane scroll_bar) {
+    public static void save(JTextPane edit_text_pane, JScrollPane scroll_bar) {
         File file = null;
         int result ;
         JFileChooser fileChooser = new JFileChooser("F:\\");
-        fileChooser.setApproveButtonToolTipText("保存"); // 设置确认按钮的现实文本
         fileChooser.setDialogTitle("保存文件"); // 设置title
         result = fileChooser.showOpenDialog(scroll_bar); // 设置Dialog的根View 根布局
 
@@ -61,7 +60,7 @@ public class fileFunction {
         try{
             OutputStreamWriter write = new OutputStreamWriter(new FileOutputStream(file),"UTF-8"); // 对字符进行编码转换
             BufferedWriter writer = new BufferedWriter(write);
-            String content = edit_text_area.getText();
+            String content = edit_text_pane.getText();
             writer.write(content);
             writer.close();
         }catch(IOException e) {
@@ -100,7 +99,7 @@ public class fileFunction {
         }
     }
 
-    public static void export(JTextArea edit_text_area, JScrollPane scroll_bar) throws IOException, DocumentException {
+    public static void export(JTextPane edit_text_pane, JScrollPane scroll_bar) throws IOException, DocumentException {
         File file = null;
         int result ;
         JFileChooser fileChooser = new JFileChooser("F:\\");
@@ -119,7 +118,7 @@ public class fileFunction {
         //方法一：使用Windows系统字体(TrueType)
         BaseFont baseFont = BaseFont.createFont(FONT, BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
         Font font = new Font(baseFont);
-        document.add(new Paragraph(edit_text_area.getText(), font));
+        document.add(new Paragraph(edit_text_pane.getText(), font));
         document.close();
     }
 }
