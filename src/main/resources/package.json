@@ -1,0 +1,65 @@
+{
+  "name": "resources",
+  "version": "1.0.0",
+  "dependencies": {
+  },
+  "width": 800,
+  "height": 600,
+  "title": "Editor             ",
+  "author_1": "Chuqi Wu",
+  "author_1_id": "19029690",
+  "author_2": "Zixaun Guo",
+  "author_2_id": "",
+  "about_windows_x": 800,
+  "about_windows_y": 400,
+  "about_windows_width": 300,
+  "about_windows_height": 200,
+
+  "keys": [
+    {
+      "1_key1":"public",
+      "1_key2":"class",
+      "1_key3":"static",
+      "1_key4":"void",
+      "1_key5":"protected",
+      "1_key6":"private",
+      "1_key7":"_int_",
+      "1_key8":"float",
+      "1_key9":"double"
+    },
+    {
+      "2_key1":"public",
+      "2_key2":"class",
+      "2_key3":"static",
+      "2_key4":"void",
+      "2_key5":"protected",
+      "2_key6":"private",
+      "2_key7":"_int_",
+      "2_key8":"float",
+      "2_key9":"double"
+    },
+    {
+      "3_key1":"public",
+      "3_key2":"class",
+      "3_key3":"static",
+      "3_key4":"void",
+      "3_key5":"protected",
+      "3_key6":"private",
+      "3_key7":"_int_",
+      "3_key8":"float",
+      "3_key9":"double"
+    },
+    {
+      "4_key1":"public",
+      "4_key2":"class",
+      "4_key3":"static",
+      "4_key4":"void",
+      "4_key5":"protected",
+      "4_key6":"private",
+      "4_key7":"_int_",
+      "4_key8":"float",
+      "4_key9":"double"
+    }
+
+  ]
+}
