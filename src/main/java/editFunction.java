@@ -2,6 +2,7 @@ import javax.swing.*;
 
 public class editFunction {
 
+
     public static void cut(JTextPane edit_text_area){
         edit_text_area.cut();
     }

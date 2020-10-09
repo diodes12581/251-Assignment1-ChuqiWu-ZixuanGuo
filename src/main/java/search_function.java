@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class search_function {
+    
     public static void search(box editor,JTextPane edit_text_pane)
     {   final JDialog findDialog=new JDialog(editor,"Search",false);//False allows other Windows to be active at the same time (i.e., no mode)
         Container con=findDialog.getContentPane();//Returns the contentPane object of this dialog box
