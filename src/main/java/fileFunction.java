@@ -68,6 +68,7 @@ public class fileFunction {
 
         }
 
+        
     }
     public static void print() {
         JFileChooser fileChooser = new JFileChooser(); // 创建打印作业
